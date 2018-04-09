@@ -53,6 +53,25 @@ public class ArchivoC {
 
                             }
 
+                        } else {
+                            a = linea.split(":");
+                            if (a[0].equalsIgnoreCase("\"Configuracioninicial\"")) {
+                                expresion.agregarInicial(a[1]);
+
+                            } else {
+                                if (a[0].equals("\"Transiciones\"")) {
+                                    while ((linea = f.readLine()) != null) {
+                                        linea = linea.replaceAll("\\s", "");
+                                        if (linea.equals("}")) {
+                                            break;
+                                        }
+                                        a = linea.split(":");
+                                        expresion.agregarTransicion(a);
+                                    }
+
+                                }
+                            }
+
                         }
                     }
                 }
@@ -64,7 +83,6 @@ public class ArchivoC {
         } catch (IOException ex) {
             System.out.println("Error");
         }
-        expresion.imprimir();
 
     }
 
