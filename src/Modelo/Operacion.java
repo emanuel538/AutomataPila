@@ -5,8 +5,7 @@
  */
 package Modelo;
 
-import Modelo.Estado;
-import java.util.AbstractMap;
+import Control.Transicion;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +19,15 @@ public class Operacion {
     private Map<Character, Integer> simbolosEntrada;
     private Map<Character, Integer> simbolosPila;
     private ArrayList<Estado> estados;
+    private String inicial;
+    private Map<String, Transicion> transicion;
 
     public Operacion() {
         simbolosEntrada = new HashMap<>();
         simbolosPila = new HashMap<>();
         estados = new ArrayList<>();
+        inicial = "";
+        transicion = new HashMap<>();
 
     }
 
@@ -35,21 +38,32 @@ public class Operacion {
     public void anadirSimboloPila(char t, int i) {
         simbolosPila.put(t, i);
     }
-    public int calcularposArreglo(char entrada,char pila){
-        int pos;
-        pos = simbolosEntrada.size()*simbolosPila.get(pila) +simbolosEntrada.get(entrada);
-        return pos;   
+
+    public void anadirTransicion(String clave, Transicion t) {
+        transicion.put(clave, t);
     }
-    public void agregarEstado(Estado e){
+
+    public int calcularposArreglo(char entrada, char pila) {
+        int pos;
+        pos = simbolosEntrada.size() * simbolosPila.get(pila) + simbolosEntrada.get(entrada);
+        return pos;
+    }
+
+    public void agregarEstado(Estado e) {
         estados.add(e);
     }
-    public void recorrerEstado(){
-        for(Estado x : estados){
-            for(int i = 0; i < x.getTransicion().length; i++){
+
+    public void recorrerEstado() {
+        for (Estado x : estados) {
+            for (int i = 0; i < x.getTransicion().length; i++) {
                 System.out.println(x.getTransicion()[i]);
             }
             System.out.println("fffffffff");
         }
+    }
+
+    public void setInicial(String inicial) {
+        this.inicial = inicial;
     }
 
 }
