@@ -17,8 +17,10 @@ import java.io.IOException;
  */
 public class ArchivoC {
 
+    private ExpresionArchivoC expresion;
+
     public ArchivoC(String ruta) {
-        ExpresionArchivoC expresion = new ExpresionArchivoC();
+        expresion = new ExpresionArchivoC();
         String nombre;
         nombre = "";
         try {
@@ -85,5 +87,14 @@ public class ArchivoC {
         }
 
     }
+
+    public ExpresionArchivoC getExpresion() {
+        return expresion;
+    }
+
+    public void setExpresion(ExpresionArchivoC expresion) {
+        this.expresion = expresion;
+    }
+    
 
 }

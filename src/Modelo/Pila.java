@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
+/*
+Traduccion E Implementacion De Las Funciones De La Pila a 
+los Metodos Del libro De Teoria
+*/
 import java.util.Map;
 import java.util.Stack;
 
-/**
- *
- * @author elburi
- */
 public class Pila {
 
     private Stack<Character> pila;
@@ -25,14 +20,17 @@ public class Pila {
 
     }
 
+    //Metodo Apilar (Push)
     public void apilar(char t) {
         pila.push(t);
     }
 
+    //Metodo Desapilar (Pop)
     public void desapilar() {
         pila.pop();
     }
 
+    //Metodo Replace
     public void replace(String a) {
         pila.pop();
         for (int i = 0; i < a.length(); i++) {
@@ -40,8 +38,9 @@ public class Pila {
         }
 
     }
+    
+    //Metodo Toper (peek)
     public char tope(){
         return pila.peek();
     }
-
 }

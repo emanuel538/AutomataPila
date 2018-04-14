@@ -6,7 +6,7 @@
 package Control;
 
 import Modelo.Estado;
-import Modelo.Operacion;
+import Modelo.Operaciones;
 
 /**
  *
@@ -14,10 +14,12 @@ import Modelo.Operacion;
  */
 public class ExpresionArchivoC {
 
-    private Operacion operacion;
+    private Operaciones operacion;
+    private String simboloEntrada;
+    private String simboloPila;
 
     public ExpresionArchivoC() {
-        operacion = new Operacion();
+        operacion = new Operaciones();
 
     }
 
@@ -25,18 +27,24 @@ public class ExpresionArchivoC {
         cadena = cadena.replace("]", "");
         cadena = cadena.replace(",", "");
         cadena = cadena.replace("\"", "");
+        simboloEntrada = cadena;
         for (int i = 0; i < cadena.length(); i++) {
+            System.out.println(cadena.charAt(i));
             operacion.anadirSimboloEntrada(cadena.charAt(i), i);
         }
+
     }
 
     void agregarSimboloPila(String cadena) {
         cadena = cadena.replace("]", "");
         cadena = cadena.replace(",", "");
         cadena = cadena.replace("\"", "");
+        simboloPila = cadena;
         for (int i = 0; i < cadena.length(); i++) {
             operacion.anadirSimboloPila(cadena.charAt(i), i);
         }
+        
+
     }
 
     void agregarEstado(String nombre, String tansicion) {
@@ -86,6 +94,27 @@ public class ExpresionArchivoC {
         System.out.println(transicion[0]);        
 
     }
+
+    public String getSimboloEntrada() {
+        return simboloEntrada;
+    }
+
+    public void setSimboloEntrada(String simboloEntrada) {
+        this.simboloEntrada = simboloEntrada;
+    }
+
+    public String getSimboloPila() {
+        return simboloPila;
+    }
+
+    public void setSimboloPila(String simboloPila) {
+        this.simboloPila = simboloPila;
+    }
+
+    public Operaciones getOperacion() {
+        return operacion;
+    }
+    
 
 
 

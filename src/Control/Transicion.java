@@ -7,10 +7,6 @@ package Control;
 
 import Modelo.Pila;
 
-/**
- *
- * @author elburi
- */
 public class Transicion {
     private String operacion;
     private String simbolo;
@@ -34,9 +30,6 @@ public class Transicion {
             return 'S';
         }
         p.replace(simbolo);
-        return 'S';
-        
-    
+        return 'S';    
     }
-    
 }

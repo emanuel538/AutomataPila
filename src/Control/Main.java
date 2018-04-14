@@ -5,18 +5,12 @@
  */
 package Control;
 
-/**
- *
- * @author elburi
- */
+import Vista.General_Window; // Importar Vista
+
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-       ArchivoC c = new ArchivoC("/home/elburi/Descargas/automata.txt");
-
+     General_Window  gw = new General_Window(); // Declarar Ventana General
+     gw.setLocationRelativeTo(null); // Centrar ventana general
+     gw.setVisible(true);  // Mostrar Ventana General
     }
-
 }
