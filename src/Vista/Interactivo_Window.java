@@ -5,17 +5,66 @@
  */
 package Vista;
 
-/**
- *
- * @author Maraton
- */
-public class Interactivo_Window extends javax.swing.JPanel {
+import Control.Utilidades;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.text.Text;
+import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 
-    /**
-     * Creates new form Interactivo_Window
-     */
+public class Interactivo_Window extends javax.swing.JFrame {
+
+    public String simboloEntrada;
+    public String simboloSalida;
+
+    //Constructor De La Clase Principal
     public Interactivo_Window() {
         initComponents();
+    }
+
+    //Funcion Para Poner Los Simbolos De Entarda Y De La Pila
+    public String simboloDeEntradayPila(JTextField texto, String Simbolo) {
+        String Entrada = texto.getText();
+        String palabrasinespacio = "";
+        String frase = "";
+
+        // Quitamos Espacios En Blanco
+        for (int i = 0; i < Entrada.length(); i++) {
+            if (Entrada.charAt(i) != ' ') {
+                palabrasinespacio += Entrada.charAt(i);
+            }
+        }
+
+        for (int i = 0; i < palabrasinespacio.length(); i++) {
+            frase += ("\"" + palabrasinespacio.charAt(i) + "\",");
+        }
+        frase = frase.substring(0, (frase.length() - 1));
+        Simbolo = frase;
+
+        return Simbolo;
+    }
+
+    public void Estados(BufferedWriter salida, int Estados) throws IOException {
+        for (int i = 0; i < Estados; i++) {
+            salida.newLine(); // Salto De Linea
+            salida.write("{");
+            salida.newLine(); // Salto De Linea
+            salida.write("\"nombre\":\"S" + i + "\",");
+            salida.newLine(); // Salto De Linea
+            salida.write("\"transiciones\":[" + i + "]");
+            salida.newLine(); // Salto De Linea
+            salida.write("}");
+            if ((i + 1) != Estados) {
+                salida.append(',');
+            }
+            
+
+        }
+
     }
 
     /**
@@ -27,60 +76,127 @@ public class Interactivo_Window extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        btnGenerar = new javax.swing.JButton();
+        lblEntrada = new javax.swing.JLabel();
+        txtSimboloEntrada = new javax.swing.JTextField();
+        lblPila = new javax.swing.JLabel();
+        txtSimboloPila = new javax.swing.JTextField();
+        lblEstados = new javax.swing.JLabel();
+        txtEstados = new javax.swing.JTextField();
 
-        jLabel2.setText("Simbolo De La Pila");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setText("Simbolo De Entrada");
+        btnGenerar.setText("Generar");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
+        lblEntrada.setText("Ingrese Los  Simbolos De Entarda Separados  Por Espacio");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        txtSimboloEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSimboloEntradaActionPerformed(evt);
+            }
+        });
+
+        lblPila.setText("Ingrese Los Simbolos De La Pla Separados Por Espacio");
+
+        txtSimboloPila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSimboloPilaActionPerformed(evt);
+            }
+        });
+
+        lblEstados.setText("Ingrese El Numero De Estados");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGenerar)
+                .addGap(153, 153, 153))
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
-                .addContainerGap(133, Short.MAX_VALUE))
+                    .addComponent(lblEstados)
+                    .addComponent(lblPila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSimboloEntrada)
+                    .addComponent(lblEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addComponent(txtSimboloPila)
+                    .addComponent(txtEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(17, 17, 17)
-                .addComponent(jLabel3)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblEntrada)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(txtSimboloEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPila)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addComponent(txtSimboloPila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblEstados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(btnGenerar)
+                .addGap(37, 37, 37))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+
+        //Plantilla para la generacion del automata
+        JFileChooser guardar = new JFileChooser();
+        guardar.setApproveButtonText("Guardar"); // Boton Para Guardar El Texto
+        guardar.showSaveDialog(null); // Abrir Ventana De Dialogo
+        File Archivo = new File(guardar.getSelectedFile() + ".txt"); //Crear El Archivo
+        int Estados = Integer.parseInt(txtEstados.getText()); // Capturamos El Texto De Estados
+        try {
+            BufferedWriter salida = new BufferedWriter(new FileWriter(Archivo)); // Crear Buffer De Escritura
+            salida.write("{");
+            salida.newLine(); // Salto De Linea
+            salida.write("\"Simbolos de entrada\":[" + simboloDeEntradayPila(txtSimboloEntrada, simboloEntrada) + "],");
+            salida.newLine(); // Salto De Linea
+            salida.write("\"Simbolos en la pila\":[" + simboloDeEntradayPila(txtSimboloPila, simboloSalida) + "],");
+            salida.newLine(); // Salto De Linea
+            salida.write("\"Estados\":[");
+            Estados(salida, Estados);
+
+            salida.newLine(); // Salto De Linea
+            salida.append("],");
+
+            salida.close();
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void txtSimboloEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSimboloEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSimboloEntradaActionPerformed
+
+    private void txtSimboloPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSimboloPilaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSimboloPilaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton btnGenerar;
+    private javax.swing.JLabel lblEntrada;
+    private javax.swing.JLabel lblEstados;
+    private javax.swing.JLabel lblPila;
+    private javax.swing.JTextField txtEstados;
+    private javax.swing.JTextField txtSimboloEntrada;
+    private javax.swing.JTextField txtSimboloPila;
     // End of variables declaration//GEN-END:variables
 }
