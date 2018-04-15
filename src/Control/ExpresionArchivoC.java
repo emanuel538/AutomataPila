@@ -69,7 +69,7 @@ public class ExpresionArchivoC {
 
     void agregarTransicion(String transicion[]) {
         boolean bandera;
-        bandera = true;
+        bandera = false;
         transicion[0] = transicion[0].replace("\"", "");
         if(transicion[0].equals("R") || transicion[0].equals("A")){
             return;
@@ -88,7 +88,7 @@ public class ExpresionArchivoC {
             operaciones[1] = operaciones[1].replaceAll("cambia", "");
         }
         if(operaciones[2].equalsIgnoreCase("avance")){
-            bandera = false;
+            bandera = true;
         }
         Transicion t = new Transicion(op[0], simbolo, operaciones[1], bandera);
         operacion.anadirTransicion(transicion[0], t);

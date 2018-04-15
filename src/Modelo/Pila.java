@@ -43,4 +43,9 @@ public class Pila {
     public char tope(){
         return pila.peek();
     }
+
+    public Stack<Character> getPila() {
+        return pila;
+    }
+    
 }

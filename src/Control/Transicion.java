@@ -32,4 +32,13 @@ public class Transicion {
         p.replace(simbolo);
         return 'S';    
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public boolean isAvance() {
+        return avance;
+    }
+    
 }

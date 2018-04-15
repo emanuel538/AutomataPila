@@ -42,6 +42,9 @@ public class Operacion {
     public void anadirTransicion(String clave, Transicion t) {
         transicion.put(clave, t);
     }
+    public Transicion getTransicion(String t){
+        return transicion.get(t);
+    }
 
     public int calcularposArreglo(char entrada, char pila) {
         int pos;
@@ -61,6 +64,11 @@ public class Operacion {
     public ArrayList<Estado> getEstados() {
         return estados;
     }
+
+    public String getInicial() {
+        return inicial;
+    }
+    
     
 
 }
