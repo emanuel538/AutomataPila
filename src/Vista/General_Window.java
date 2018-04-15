@@ -21,8 +21,8 @@ public class General_Window extends javax.swing.JFrame {
         btnCargar = new javax.swing.JButton();
         txtGeneral = new java.awt.TextArea();
         txtpath = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVerMatriz = new javax.swing.JButton();
+        btnInteractivo = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         lbl_Fondo = new javax.swing.JLabel();
 
@@ -54,18 +54,23 @@ public class General_Window extends javax.swing.JFrame {
         });
         getContentPane().add(txtpath, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 340, 40));
 
-        jButton1.setText("Ver Matriz");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVerMatriz.setText("Ver Matriz");
+        btnVerMatriz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVerMatrizActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 140, 40));
+        getContentPane().add(btnVerMatriz, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 140, 40));
 
-        jButton2.setText("Interactivo");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 140, 40));
+        btnInteractivo.setText("Interactivo");
+        btnInteractivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInteractivoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInteractivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 140, 40));
 
-        jToggleButton1.setText("Generar ilera");
+        jToggleButton1.setText("Generar Ilera");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -94,23 +99,28 @@ public class General_Window extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpathActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVerMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMatrizActionPerformed
         Ver_Matriz_Window mg = new Ver_Matriz_Window(archivo,this); // Declarar Matriz Generada
         mg.setVisible(true);  // Mostrar Matriz Generada
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVerMatrizActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         Pila_Window p = new Pila_Window(archivo.getExpresion().getOperacion());
         p.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    private void btnInteractivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInteractivoActionPerformed
+       Interactivo_Window inte = new Interactivo_Window();
+       inte.setVisible(true);
+    }//GEN-LAST:event_btnInteractivoActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnGenerar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnInteractivo;
+    private javax.swing.JButton btnVerMatriz;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lbl_Fondo;
     private java.awt.TextArea txtGeneral;
