@@ -81,8 +81,7 @@ public class General_Window extends javax.swing.JFrame {
 
     
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        Ver_Matriz_Window mg = new Ver_Matriz_Window(); // Declarar Matriz Generada
-        mg.setVisible(true);  // Mostrar Matriz Generada
+        
     }//GEN-LAST:event_btnGenerarActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
@@ -100,8 +99,9 @@ public class General_Window extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFoto1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ver_Matriz_Window mg = new Ver_Matriz_Window(); // Declarar Matriz Generada
+        Ver_Matriz_Window mg = new Ver_Matriz_Window(archivo,this); // Declarar Matriz Generada
         mg.setVisible(true);  // Mostrar Matriz Generada
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

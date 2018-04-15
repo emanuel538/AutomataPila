@@ -5,18 +5,36 @@
  */
 package Vista;
 
+import Control.ArchivoC;
+import Control.Utilidades;
+import java.awt.event.ItemEvent;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Maraton
  */
 public class Ver_Matriz_Window extends javax.swing.JFrame {
-
-    /**
-     * Creates new form NewJFrame
-     */
-    public Ver_Matriz_Window() {
+    private ArchivoC archivo;
+    private DefaultTableModel modelo;
+    public Ver_Matriz_Window(ArchivoC c,JFrame t) {
         initComponents();
+        this.archivo = c;
+        generar();
        
+    }
+    void generar(){
+        Utilidades u = new Utilidades();
+        u.generarCombobox(jComboBox1,archivo);
+        
+    }
+    public void crearTabla(String simbolos){
+        modelo = new DefaultTableModel();
+        for(int i = 0; i < simbolos.length(); i++){
+            modelo.addColumn(simbolos.charAt(i));
+        }
+        this.jTable1.setModel(modelo);
     }
     
 
@@ -37,6 +55,11 @@ public class Ver_Matriz_Window extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 190, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -59,6 +82,15 @@ public class Ver_Matriz_Window extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        crearTabla(archivo.getExpresion().getSimboloEntrada());
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+            String seleccionado = jComboBox1.getSelectedItem().toString();
+            Utilidades u = new Utilidades();
+            u.generarTabla(modelo, archivo, seleccionado);
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments

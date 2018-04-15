@@ -6,7 +6,7 @@
 package Control;
 
 import Modelo.Estado;
-import Modelo.Operaciones;
+import Modelo.Operacion;
 
 /**
  *
@@ -14,12 +14,12 @@ import Modelo.Operaciones;
  */
 public class ExpresionArchivoC {
 
-    private Operaciones operacion;
+    private Operacion operacion;
     private String simboloEntrada;
     private String simboloPila;
 
     public ExpresionArchivoC() {
-        operacion = new Operaciones();
+        operacion = new Operacion();
 
     }
 
@@ -51,6 +51,7 @@ public class ExpresionArchivoC {
         tansicion = tansicion.replace("[", "");
         tansicion = tansicion.replace("]", "");
         tansicion = tansicion.replace(";", ",");
+        nombre = nombre.replace(",", "");
         String transiciones[] = tansicion.split(",");
         Estado e;
         e = new Estado(nombre, transiciones);
@@ -111,7 +112,7 @@ public class ExpresionArchivoC {
         this.simboloPila = simboloPila;
     }
 
-    public Operaciones getOperacion() {
+    public Operacion getOperacion() {
         return operacion;
     }
     

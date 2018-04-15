@@ -1,12 +1,17 @@
 package Control;
 
+import Modelo.Estado;
+import Modelo.Operacion;
 import java.awt.TextArea;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField; //Crear Un Campo De Texto
+import javax.swing.table.DefaultTableModel;
 
 
 public class Utilidades {
@@ -38,7 +43,40 @@ public class Utilidades {
         return ruta;
     }
     
-    public void generarCombobox(){
+    public void generarCombobox(JComboBox estado,ArchivoC archivo){
+        ExpresionArchivoC expresion = archivo.getExpresion();
+        Operacion operacion = expresion.getOperacion();
+        ArrayList <Estado> e = operacion.getEstados();
+        for(Estado est : e){
+            estado.addItem(est.getNombre());
+        }
+        
+    }
+    public void  generarTabla(DefaultTableModel modelo, ArchivoC c,String estado){
+        Estado est;
+        est = null;
+        ExpresionArchivoC expresion = c.getExpresion();
+        String entrada = expresion.getSimboloEntrada();
+        String pila = expresion.getSimboloPila();
+        String transicion [] = new String[entrada.length()];
+        Operacion p = expresion.getOperacion();
+        int pos;
+        ArrayList <Estado>estados = p.getEstados();
+        for(Estado e : estados){
+            est = e;
+            System.out.println(e.getNombre());
+            System.out.println(estado);
+            if(e.getNombre().equals(estado)){
+                break;
+            }
+        }
+        for(int i = 0; i < pila.length();i++){
+            for(int j = 0; j < entrada.length();j++){
+                transicion[j] = est.getTransicion()[p.calcularposArreglo(entrada.charAt(j),pila.charAt(i))];
+            }
+            modelo.addRow(transicion);
+        }
+        
         
     }
     

@@ -53,17 +53,14 @@ public class Operacion {
         estados.add(e);
     }
 
-    public void recorrerEstado() {
-        for (Estado x : estados) {
-            for (int i = 0; i < x.getTransicion().length; i++) {
-                System.out.println(x.getTransicion()[i]);
-            }
-            System.out.println("fffffffff");
-        }
-    }
-
+    
     public void setInicial(String inicial) {
         this.inicial = inicial;
     }
+
+    public ArrayList<Estado> getEstados() {
+        return estados;
+    }
+    
 
 }
